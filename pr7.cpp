@@ -1,4 +1,3 @@
-// не седелана
 #include <iostream>
 #include <locale>
 using namespace std;
@@ -6,12 +5,10 @@ using namespace std;
 int main() {
     setlocale(0, "");
 
-
     int month;
     int day;
 
-
-    cout << "[ + ] Месяца года" << endl;
+    cout << "[ $ ] Календарь" << endl;
     cout << "[ 1 ] Январь" << endl;
     cout << "[ 2 ] Февраль" << endl;
     cout << "[ 3 ] Март" << endl;
@@ -26,59 +23,94 @@ int main() {
     cout << "[ 12 ] Декабрь" << endl;
     cout << endl;
 
-    cout << "Выберите месяц: ";
+    cout << "[ + ] Выберите месяц: ";
     cin >> month;
-    cout << "Выберите день: ";
+
+    if (month < 1 || month > 12) {
+        cout << "Не правильно введен номер месяца!" << endl;
+        return 1;
+    }
+
+    cout << "Выбран месяц — \"";
+    switch (month) {
+    case 1: cout << "Январь"; break;
+    case 2: cout << "Февраль"; break;
+    case 3: cout << "Март"; break;
+    case 4: cout << "Апрель"; break;
+    case 5: cout << "Май"; break;
+    case 6: cout << "Июнь"; break;
+    case 7: cout << "Июль"; break;
+    case 8: cout << "Август"; break;
+    case 9: cout << "Сентябрь"; break;
+    case 10: cout << "Октябрь"; break;
+    case 11: cout << "Ноябрь"; break;
+    case 12: cout << "Декабрь"; break;
+    }
+    cout << "\"" << endl;
+
+    cout << "Выберите день месяца: ";
     cin >> day;
 
-    if (month == 1 or 3 or 5 or 7 or 9 or 11) {
-        if (day < 32)
-            cout << "Не верно" << endl;
-    }
-        else
-            break;
-
+    bool validDay = false;
+    const char* monthName = nullptr;  // Инициализация
 
     switch (month) {
     case 1:
-        cout << day << " Января" << endl;
+        monthName = "января";
+        validDay = (day >= 1 && day <= 31);
         break;
     case 2:
-        cout << day << " Февраля" << endl;   
+        monthName = "февраля";
+        validDay = (day >= 1 && day <= 28);
         break;
     case 3:
-        cout << day << " Марта" << endl;
+        monthName = "марта";
+        validDay = (day >= 1 && day <= 31);
         break;
     case 4:
-        cout << day << " Апреля" << endl;
+        monthName = "апреля";
+        validDay = (day >= 1 && day <= 30);
         break;
     case 5:
-        cout << day << " Марта" << endl;
+        monthName = "мая";
+        validDay = (day >= 1 && day <= 31);
         break;
     case 6:
-        cout << day << " Июня" << endl;
+        monthName = "июня";
+        validDay = (day >= 1 && day <= 30);
         break;
     case 7:
-        cout << day << " Июля" << endl;
+        monthName = "июля";
+        validDay = (day >= 1 && day <= 31);
         break;
     case 8:
-        cout << day << " Августа" << endl;
+        monthName = "августа";
+        validDay = (day >= 1 && day <= 31);
         break;
     case 9:
-        cout << day << " Сентября" << endl;
+        monthName = "сентября";
+        validDay = (day >= 1 && day <= 30);
         break;
     case 10:
-        cout << day << " Октября" << endl;
+        monthName = "октября";
+        validDay = (day >= 1 && day <= 31);
         break;
     case 11:
-        cout << day << " Ноября" << endl;
+        monthName = "ноября";
+        validDay = (day >= 1 && day <= 30);
         break;
     case 12:
-        cout << day << " Декабря" << endl;
+        monthName = "декабря";
+        validDay = (day >= 1 && day <= 31);
         break;
-    default:
-        cout << "Не правильно введен номер месяца!" << endl;
-        break;
+    }
+
+    if (validDay) {
+        cout << "Дата: " << day << " " << monthName << endl;
+    }
+    else {
+        cout << "Неправильно введен день месяца!" << endl;
+        return 1;
     }
 
     return 0;
